@@ -103,6 +103,7 @@ lazy_static! {
             fork: false,
             #[cfg(feature = "timeout")]
             timeout: 0,
+            output_seeds: false,
             _non_exhaustive: (),
         };
 
@@ -207,6 +208,9 @@ pub struct Config {
     /// setting the `PROPTEST_TIMEOUT` environment variable.
     #[cfg(feature = "timeout")]
     pub timeout: u32,
+
+    /// If true, the runner seed is output before the test
+    pub output_seeds: bool,
 
     // Needs to be public so FRU syntax can be used.
     #[doc(hidden)]

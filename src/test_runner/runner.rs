@@ -400,6 +400,9 @@ impl TestRunner {
             // Generate a new seed and make an RNG from that so that we know
             // what seed to persist if this case fails.
             let seed = self.rng.gen_get_seed();
+            if self.config.output_seeds {
+                println!("Using Proptest seed: {:?}", seed);
+            }
             let result = self.gen_and_run_case(
                 strategy, &test, &mut replay, &mut fork_output);
             if let Err(TestError::Fail(_, ref value)) = result {
